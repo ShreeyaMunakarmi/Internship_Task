@@ -22,11 +22,11 @@ This project is a **TODO list application API** built using **Node.js**, **Expre
 - **Body-parser**: Middleware for parsing incoming request bodies.
 
 ## Project Structure
-
+<pre>
 |-config<br>
-│   - database.js       **Sequelize database configuration**<br>
+│   - database.js        **Sequelize database configuration**<br>
 |-controllers<br>
-│   -authController.js  **Handles user authentication and task management**<br>
+│   -authController.js   **Handles user authentication and task management**<br>
 |- models<br>
 │   - taskDetail.js      **Task model**<br>
 │   - user.js            **User model**<br>
@@ -36,6 +36,7 @@ This project is a **TODO list application API** built using **Node.js**, **Expre
 |- server.js              **Entry point for the application**<br>
 |- package.json           **Dependencies and scripts**<br>
 |-package-lock.json       **Lock file for dependencies**<br>
+</pre>pre>
 
 ## Prerequisites
 
@@ -47,6 +48,7 @@ Before you begin, ensure you have the following installed:
 ## API Endpoints
 
 ### Authentication
+<pre>
 -POST /auth/register: Register a new user<br>
     -Request Body: { name, email, password }<br>
 -POST /auth/login: Log in with an existing account<br>
@@ -55,8 +57,10 @@ Before you begin, ensure you have the following installed:
 -GET /auth/me: Get logged-in user details<br>
     -Requires JWT token in the Authorization header<br>
     -Requires Content-Type: application/json on the Headers tab<br>
+</pre>
 
 ### Task Management
+<pre>
 -POST /auth/tasks: Create a new task<br>
     -Requires JWT token in the Authorization header<br>
     -Requires Content-Type: application/json on the Headers tab<br>
@@ -77,5 +81,6 @@ Before you begin, ensure you have the following installed:
     -Requires JWT token in the Authorization header<br>
     -Requires Content-Type: application/json on the Headers tab<br>
     -Request Body: { id, title, body, date }<br>
+</pre>
 
    
