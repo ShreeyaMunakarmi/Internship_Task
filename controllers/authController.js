@@ -93,26 +93,36 @@ exports.createTask = async (req, res) => {
 
     res.status(201).json({ message: 'Task created successfully!', task });
   } catch (error) {
+    console.log('Create Task Error: ', error); 
     res.status(400).json({ error: 'Failed to create task!' });
   }
 };
 
 exports.getTasks = async (req, res) => {
   const token = req.header('Authorization').replace('Bearer ', '');
-  const { status } = req.query;
+  const { status } = req.query; 
+  const page = parseInt(req.query.page) || 1; 
+  const limit = parseInt(req.query.limit) || 10; 
+  const offset = (page - 1) * limit; 
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    const tasks = await TaskDetail.findAll({
-      where: { userId: decoded.id, status },
+    const tasks = await TaskDetail.findAndCountAll({
+      where: { userId: decoded.id, ...(status ? { status } : {}) },
+      limit: limit,
+      offset: offset,
     });
 
-    res.status(200).json(tasks);
+    res.status(200).json({
+      tasks: tasks.rows, 
+      currentPage: page, 
+      totalPages: Math.ceil(tasks.count / limit), 
+      totalTasks: tasks.count, 
+    });
   } catch (error) {
     res.status(400).json({ error: 'Failed to fetch tasks!' });
   }
 };
-
 
 exports.updateTaskStatus = async (req, res) => {
     const token = req.header('Authorization').replace('Bearer ', '');
@@ -136,6 +146,7 @@ exports.updateTaskStatus = async (req, res) => {
       res.status(400).json({ error: 'Failed to update task status!' });
     }
   };
+  
   exports.deleteTask = async (req, res) => {
     const token = req.header('Authorization').replace('Bearer ', '');
     const { id } = req.query; 
@@ -151,7 +162,7 @@ exports.updateTaskStatus = async (req, res) => {
       const task = await TaskDetail.findOne({ where: { id: id, userId: user.id } });
   
       if (!task) {
-        return res.status(404).json({ error: 'Task not found or you do not have permission to delete it!' });
+        return res.status(404).json({ error: 'Task not found!' });
       }
   
       await task.destroy(); 
@@ -161,31 +172,35 @@ exports.updateTaskStatus = async (req, res) => {
       res.status(400).json({ error: 'Failed to delete task!' });
     }
   };
-  /*exports.updateTaskDetails = async (req, res) => {
+  
+  exports.updateTaskDetails = async (req, res) => {
     const token = req.header('Authorization').replace('Bearer ', '');
-    const { id, title, body } = req.body;
+    const { id, title, body, date } = req.body;
   
     try {
       const decoded = jwt.verify(token, JWT_SECRET);
+      
       const task = await TaskDetail.findOne({
-        where: { id: id, userId: decoded.id }, 
+        where: { id: id, userId: decoded.id },
       });
   
       if (!task) {
         return res.status(404).json({ error: 'Task not found!' });
       }
   
-     
+      
       if (title) task.title = title;
       if (body) task.body = body;
+      if (date) task.date = date;
   
       await task.save(); 
   
       res.status(200).json({ message: 'Task updated successfully!', task });
     } catch (error) {
+      console.log('Update Task Error: ', error); 
       res.status(400).json({ error: 'Failed to update task details!' });
     }
   };
-  */ 
+  
   
   
