@@ -24,18 +24,18 @@ This project is a **TODO list application API** built using **Node.js**, **Expre
 ## Project Structure
 
 |-config<br>
-│   - database.js       # Sequelize database configuration<br>
+│   - database.js       **Sequelize database configuration**<br>
 |-controllers<br>
-│   -authController.js  # Handles user authentication and task management<br>
+│   -authController.js  **Handles user authentication and task management**<br>
 |- models<br>
-│   - taskDetail.js      # Task model<br>
-│   - user.js            # User model<br>
+│   - taskDetail.js      **Task model**<br>
+│   - user.js            **User model**<br>
 |- routes<br>
-│   - auth.js            # Authentication and task routes<br>
-|- app.js                 # Express app configuration<br>
-|- server.js              # Entry point for the application<br>
-|- package.json           # Dependencies and scripts<br>
-|-package-lock.json      # Lock file for dependencies<br>
+│   - auth.js             **Authentication and task routes**<br>
+|- app.js                 **Express app configuration**<br>
+|- server.js              **Entry point for the application**<br>
+|- package.json           **Dependencies and scripts**<br>
+|-package-lock.json       **Lock file for dependencies**<br>
 
 ## Prerequisites
 
@@ -47,35 +47,35 @@ Before you begin, ensure you have the following installed:
 ## API Endpoints
 
 ### Authentication
--POST /auth/register: Register a new user
-    -Request Body: { name, email, password }
--POST /auth/login: Log in with an existing account
-    -Request Body: { email, password }
-    -Requires Content-Type: application/json on the Headers tab
--GET /auth/me: Get logged-in user details
-    -Requires JWT token in the Authorization header
-    -Requires Content-Type: application/json on the Headers tab
+-POST /auth/register: Register a new user<br>
+    -Request Body: { name, email, password }<br>
+-POST /auth/login: Log in with an existing account<br>
+    -Request Body: { email, password }<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
+-GET /auth/me: Get logged-in user details<br>
+    -Requires JWT token in the Authorization header<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
 
 ### Task Management
--POST /auth/tasks: Create a new task
-    -Requires JWT token in the Authorization header
-    -Requires Content-Type: application/json on the Headers tab
-    -Request Body: { title, body, date }
--GET /auth/tasks: Get a list of tasks (supports pagination)
-    -Query Params: page (default: 1), limit (default: 10), status (optional, 0 for in-progress and 1 for completed)
-    -Requires JWT token in the Authorization header
-    -Requires Content-Type: application/json on the Headers tab
--PATCH /auth/tasks/status: Update the status of a task( 0 for in-progress and 1 for completed)
-    -Requires JWT token in the Authorization header
-    -Requires Content-Type: application/json on the Headers tab
-    -Request Body: { id, status }
--DELETE /auth/tasks: Delete a task
-    -Requires JWT token in the Authorization header
-    -Requires Content-Type: application/json on the Headers tab
-     -Query Params: id
--PATCH /auth/tasks/update
-    -Requires JWT token in the Authorization header
-    -Requires Content-Type: application/json on the Headers tab
-    -Request Body: { id, title, body, date }
+-POST /auth/tasks: Create a new task<br>
+    -Requires JWT token in the Authorization header<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
+    -Request Body: { title, body, date }<br>
+-GET /auth/tasks: Get a list of tasks (supports pagination)<br>
+    -Query Params: page (default: 1), limit (default: 10), status (optional, 0 for in-progress and 1 for completed)<br>
+    -Requires JWT token in the Authorization header<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
+-PATCH /auth/tasks/status: Update the status of a task( 0 for in-progress and 1 for completed)<br>
+    -Requires JWT token in the Authorization header<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
+    -Request Body: { id, status }<br>
+-DELETE /auth/tasks: Delete a task<br>
+    -Requires JWT token in the Authorization header<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
+     -Query Params: id<br>
+-PATCH /auth/tasks/update<br>
+    -Requires JWT token in the Authorization header<br>
+    -Requires Content-Type: application/json on the Headers tab<br>
+    -Request Body: { id, title, body, date }<br>
 
    
