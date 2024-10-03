@@ -23,19 +23,19 @@ This project is a **TODO list application API** built using **Node.js**, **Expre
 
 ## Project Structure
 
-|-config
-│   - database.js       # Sequelize database configuration
-|-controllers
-│   -authController.js  # Handles user authentication and task management
-|- models
-│   - taskDetail.js      # Task model
-│   - user.js            # User model
-|- routes
-│   - auth.js            # Authentication and task routes
-|- app.js                 # Express app configuration
-|- server.js              # Entry point for the application
-|- package.json           # Dependencies and scripts
-|-package-lock.json      # Lock file for dependencies
+|-config<br>
+│   - database.js       # Sequelize database configuration<br>
+|-controllers<br>
+│   -authController.js  # Handles user authentication and task management<br>
+|- models<br>
+│   - taskDetail.js      # Task model<br>
+│   - user.js            # User model<br>
+|- routes<br>
+│   - auth.js            # Authentication and task routes<br>
+|- app.js                 # Express app configuration<br>
+|- server.js              # Entry point for the application<br>
+|- package.json           # Dependencies and scripts<br>
+|-package-lock.json      # Lock file for dependencies<br>
 
 ## Prerequisites
 
